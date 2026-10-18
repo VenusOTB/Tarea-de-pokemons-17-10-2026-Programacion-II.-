@@ -84,3 +84,20 @@ bool contieneTexto(const string& texto, const string& buscado) {
     return false;
 }
 
+void separarCampos(const string& linea, string campos[], int cantidadCampos){
+    for (int i=0; i < cantidadCampos; i++) {
+        campos [i] = "";
+    }
+    int indice = 0;
+    for (int i=0; i < (int)linea.length(); i++) {
+        char c = linea[i];
+        if (c == ',') {
+            indice++;
+            if (indice >= cantidadCampos) {
+                break;
+            }
+        } else {
+            campos[indice] += c;
+        }
+    }
+}
