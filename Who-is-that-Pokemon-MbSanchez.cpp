@@ -188,3 +188,21 @@ bool cargarPokedex(Pokedex& pokedex, const string& nombreArchivo) {
 
 }
 
+int main() {
+    setlocale(LC_ALL, "spanish");
+
+    Pokedex pokedex;
+    pokedex.pokemons = nullptr;
+    pokedex.cantidad = 0;
+
+    if (!cargarPokedex(pokedex, NOMBRE_ARCHIVO)) {
+        cout << "No es posible leer: \"" << NOMBRE_ARCHIVO << "\"." << endl;
+        cout << "Verifica si el archivo esta en la misma carpeta desde donde ejecuta el programa." << endl;
+        return 1;
+    }
+
+    cout << "Pokedex cargada: " << pokedex.cantidad << " Pokemon." << endl;
+
+    liberarPokedex(pokedex);
+    return 0;
+}
