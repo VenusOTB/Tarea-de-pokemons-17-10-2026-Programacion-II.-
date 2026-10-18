@@ -34,3 +34,19 @@ struct Pokedex {
 int main () {
     return 0;
 }
+
+int convertirEntero(const string& texto) {
+    if (texto.length() == 0) {
+        return -1;
+    }
+
+    int resultado = 0;
+    for (int i = 0; i < (int)texto.length(); i++) {
+        char c = texto[i];
+        if (c < '0' || c > '9') {
+            return -1;
+        }
+        resultado = resultado * 10 + (c - '0');
+    }
+    return resultado;
+}
