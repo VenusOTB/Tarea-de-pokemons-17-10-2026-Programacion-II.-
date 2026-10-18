@@ -298,3 +298,23 @@ void agregarTipoSiNoExiste(string tipos[], int& cantidadTipos, const string& tip
         cantidadTipos++;
     }
 }
+
+void obtenerTipos(const Pokedex& pokedex, string tipos[], int& cantidadTipos) {
+    cantidadTipos = 0;
+    for (int i = 0; i < pokedex.cantidad; i++) {
+        agregarTipoSiNoExiste(tipos, cantidadTipos, pokedex.pokemons[i].tipo1);
+        agregarTipoSiNoExiste(tipos, cantidadTipos, pokedex.pokemons[i].tipo2);
+    }
+}
+
+void ordenarPorTotalDescendente(Pokemon** lista, int cantidad) {
+    for (int i = 0; i < cantidad - 1; i++) {
+        for (int j = 0; j < cantidad - 1 - i; j++) {
+            if (lista[j]->total < lista[j + 1]->total) {
+                Pokemon* temp = lista[j];
+                lista[j] = lista[j + 1];
+                lista[j + 1] = temp;
+            }
+        }
+    }
+}
