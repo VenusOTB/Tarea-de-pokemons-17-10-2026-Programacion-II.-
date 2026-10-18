@@ -106,3 +106,9 @@ intleerEntero() {
     getline(cin, linea);
     return convertirEntero(linea);
 }
+string leerTexto() {
+    string texto;
+    getline(cin, texto);
+    return texto;
+
+}
