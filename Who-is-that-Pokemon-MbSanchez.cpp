@@ -390,3 +390,17 @@ void opcionVerPorTipo(const Pokedex& pokedex) {
     }
     cout << "\nEl total de tipo " << tipoElegido << ": " << encontrados << endl;
 }
+
+void opcionVerPorNombre(const Pokedex& pokedex) {
+    cout << "Escribí el nombre exactisimo y preciso del Pokemon: ";
+    string nombre = leerTexto();
+
+    Pokemon* encontrado = buscarPorNombreExacto(pokedex, nombre);
+    if (encontrado != nullptr) {
+        mostrarPokemon(encontrado);
+    } else {
+        cout << "No, no existe esa basura que acabais de buscar \"" << nombre << "\"." << endl;
+        cout << "Tip!!!: usa la opcion 2 para buscar por parte del nombre, ya que eres muy retrasado." << endl;
+    }
+}
+
