@@ -283,3 +283,18 @@ Pokemon* buscarPorNombreExacto(const Pokedex& pokedex, const string& nombre) {
     }
     return nullptr;
 }
+
+void agregarTipoSiNoExiste(string tipos[], int& cantidadTipos, const string& tipo) {
+    if (tipo.length() == 0) {
+        return;
+    }
+    for (int i = 0; i < cantidadTipos; i++) {
+        if (tipos[i] == tipo) {
+            return;
+        }
+    }
+    if (cantidadTipos < MAX_TIPOS) {
+        tipos[cantidadTipos] = tipo;
+        cantidadTipos++;
+    }
+}
