@@ -330,3 +330,31 @@ void opcionVerPorNumero(const Pokedex& pokedex) {
         cout << "Que ponei papi, no existe nadie con ese numero de pokedex." << endl;
     }
 }
+
+void opcionBuscarPorNombre(const Pokedex& pokedex) {
+    cout << "Escribí el nombre o alguna parte del nombre: ";
+    string buscado = aMinusculas(leerTexto());
+
+    if (buscado.length() == 0) {
+        cout << "No escribiste nada, que haces con tu vida?" << endl;
+        return;
+    }
+
+    int encontrados = 0;
+    for (int i = 0; i < pokedex.cantidad; i++) {
+        if (contieneTexto(aMinusculas(pokedex.pokemons[i].nombre), buscado)) {
+            if (encontrados == 0) {
+                cout << "\nLos resultados:" << endl;
+                mostrarEncabezadoTabla();
+            }
+            mostrarFilaPokemon(&pokedex.pokemons[i]);
+            encontrados++;
+        }
+    }
+
+    if (encontrados == 0) {
+        cout << "No se que estais buscando mi hermanazo." << endl;
+    } else {
+        cout << "\nEl total encontrados: " << encontrados << endl;
+    }
+}
