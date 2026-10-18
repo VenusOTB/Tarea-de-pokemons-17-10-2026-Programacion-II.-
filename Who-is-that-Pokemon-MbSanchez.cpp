@@ -358,3 +358,35 @@ void opcionBuscarPorNombre(const Pokedex& pokedex) {
         cout << "\nEl total encontrados: " << encontrados << endl;
     }
 }
+
+void opcionVerPorTipo(const Pokedex& pokedex) {
+    string tipos[MAX_TIPOS];
+    int cantidadTipos = 0;
+    obtenerTipos(pokedex, tipos, cantidadTipos);
+
+    cout << "\nLos tipos disponibles son:" << endl;
+    for (int i = 0; i < cantidadTipos; i++) {
+        cout << " " << (i + 1) << ". " << tipos[i] << endl;
+    }
+    cout << "Elije un tipo, mi rey (1-" << cantidadTipos << "): ";
+    int eleccion = leerEntero();
+
+    if (eleccion < 1 || eleccion > cantidadTipos) {
+        cout << "EEEEEHHGG, ESTA MAL. Tipo no valido." << endl;
+        return;
+    }
+
+    string tipoElegido = tipos[eleccion - 1];
+    cout << "\nEs un Pokemon de tipo " << tipoElegido << ":" << endl;
+    mostrarEncabezadoTabla();
+
+    int encontrados = 0;
+    for (int i = 0; i < pokedex.cantidad; i++) {
+        Pokemon* p = &pokedex.pokemons[i];
+        if (p->tipo1 == tipoElegido || p->tipo2 == tipoElegido) {
+            mostrarFilaPokemon(p);
+            encontrados++;
+        }
+    }
+    cout << "\nEl total de tipo " << tipoElegido << ": " << encontrados << endl;
+}
