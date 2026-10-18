@@ -25,3 +25,12 @@ struct Pokemon {
     int generacion;
     bool legendario;
 };
+
+struct Pokedex {
+    Pokemon* pokemons;
+    int cantidad;
+}; 
+
+int main () {
+    return 0;
+}
