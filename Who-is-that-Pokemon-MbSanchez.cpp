@@ -101,7 +101,7 @@ void separarCampos(const string& linea, string campos[], int cantidadCampos){
         }
     }
 }
-intleerEntero() {
+int leerEntero() {
     string linea;
     getline(cin, linea);
     return convertirEntero(linea);
@@ -111,4 +111,33 @@ string leerTexto() {
     getline(cin, texto);
     return texto;
 
+}
+
+int contarRegistros(const string& nombreArchivo) {
+    ifstream archivo(nombreArchivo);
+    if (!archivo.is_open()) {
+        return -1;
+    }
+
+    string linea;
+    int contador = 0;
+
+    getline(archivo, linea); // saltar el encabezado
+
+    while (getline(archivo, linea)) {
+        if (linea.length() > 0) {
+            contador++;
+        }
+    }
+
+    archivo.close();
+    return contador;
+}
+
+void liberarPokedex(Pokedex& pokedex) {
+    if (pokedex.pokemons != nullptr) {
+        delete[] pokedex.pokemons;
+        pokedex.pokemons = nullptr;
+    }
+    pokedex.cantidad = 0;
 }
