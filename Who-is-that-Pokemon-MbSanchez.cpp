@@ -141,3 +141,50 @@ void liberarPokedex(Pokedex& pokedex) {
     }
     pokedex.cantidad = 0;
 }
+
+bool cargarPokedex(Pokedex& pokedex, const string& nombreArchivo) {
+    int cantidadEnArchivo = contarRegistros(nombreArchivo);
+    if (cantidadEnArchivo <=0) {
+        return false;
+    }
+
+    pokedex.pokemons = new Pokemon[cantidadEnArchivo];
+    pokedex.cantidad = 0;
+
+    ifstream archivo(nombreArchivo);
+    if (!archivo.is_open ()) {
+        liberarPokedex(pokedex);
+        return false;
+    }
+
+    string linea;
+    string campos[CAMPOS_POR_LINEA];
+
+    getline(archivo, linea);
+
+    while (getline(archivo, linea) && pokedex.cantidad < cantidadEnArchivo) {
+        if (linea.length() > 0) {
+            separarCampos(linea, campos, CAMPOS_POR_LINEA);
+
+            Pokemon* p = &pokedex.pokemons[pokedex.cantidad];
+
+            p->numero     = convertirEntero(campos[0]);
+            p->nombre     = campos[1];
+            p->tipo1      = campos[2];
+            p->tipo2      = campos[3];
+            p->hp         = convertirEntero(campos[4]);
+            p->ataque     = convertirEntero(campos[5]);
+            p->defensa    = convertirEntero(campos[6]);
+            p->velocidad  = convertirEntero(campos[7]);
+            p->altura     = convertirEntero(campos[8]);
+            p->peso       = convertirEntero(campos[9]);
+
+            pokedex.cantidad++;
+        }
+    }
+
+    archivo.close();
+    return true;
+
+}
+
