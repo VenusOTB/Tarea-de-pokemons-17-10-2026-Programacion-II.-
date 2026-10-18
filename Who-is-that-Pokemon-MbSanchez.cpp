@@ -409,3 +409,26 @@ void opcionTopEstadisticas(const Pokedex& pokedex) {
         cout << "No hay suficientes Pokemones para hacer ese top." << endl;
         return;
     }
+
+        Pokemon** ordenados = new Pokemon*[pokedex.cantidad];
+    for (int i = 0; i < pokedex.cantidad; i++) {
+        ordenados[i] = &pokedex.pokemons[i];
+    }
+
+    ordenarPorTotalDescendente(ordenados, pokedex.cantidad);
+
+    cout << "\n ///TOP " << TOP << " LOS MAS MAMADOS (por Total)///" << endl;
+    mostrarEncabezadoTabla();
+    for (int i = 0; i < TOP; i++) {
+        mostrarFilaPokemon(ordenados[i]);
+    }
+
+    cout << "\n ///TOP " << TOP << " LOS MAS BOBOS (por Total)///" << endl;
+    mostrarEncabezadoTabla();
+    for (int i = 0; i < TOP; i++) {
+        mostrarFilaPokemon(ordenados[pokedex.cantidad - 1 - i]);
+    }
+
+    delete[] ordenados;
+    ordenados = nullptr;
+}
