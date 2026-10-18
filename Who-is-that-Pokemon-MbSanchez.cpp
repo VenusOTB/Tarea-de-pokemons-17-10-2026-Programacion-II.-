@@ -60,3 +60,27 @@ string aMinusculas(const string& texto) {
     }
     return resultado;
 }
+
+bool contieneTexto(const string& texto, const string& buscado) {
+    int largoTexto = texto.length();
+    int largoBuscado = buscado.length();
+
+    if (largoBuscado == 0 || largoBuscado > largoTexto) {
+        return false;
+    }
+
+    for (int inicio = 0; inicio <= largoTexto - largoBuscado; inicio++) {
+        bool coincide = true;
+        for (int j = 0; j < largoBuscado; j++) {
+            if (texto[inicio + j] != buscado[j]) {
+                coincide = false;
+                break;
+            }
+        }
+        if (coincide) {
+            return true;
+        }
+    }
+    return false;
+}
+
