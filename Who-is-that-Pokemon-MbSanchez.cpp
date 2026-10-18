@@ -432,3 +432,14 @@ void opcionTopEstadisticas(const Pokedex& pokedex) {
     delete[] ordenados;
     ordenados = nullptr;
 }
+
+void mostrarMenu() {
+    cout << "\n//////LA SUPER POKEDEX de Andres (AURA)//////" << endl;
+    cout << "1. Ver info de Pokemon por numero de Pokedex" << endl;
+    cout << "2. Buscar Pokemon por nombre" << endl;
+    cout << "3. Ver Pokemon de un tipo" << endl;
+    cout << "4. Ver info de Pokemon por nombre" << endl;
+    cout << "5. Top 3 mas mamados y mas bobos" << endl;
+    cout << "6. Salir de la pokedex" << endl;
+    cout << "Selecciona una opcion papi: ";
+}
