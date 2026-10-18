@@ -101,3 +101,8 @@ void separarCampos(const string& linea, string campos[], int cantidadCampos){
         }
     }
 }
+intleerEntero() {
+    string linea;
+    getline(cin, linea);
+    return convertirEntero(linea);
+}
