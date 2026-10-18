@@ -188,25 +188,6 @@ bool cargarPokedex(Pokedex& pokedex, const string& nombreArchivo) {
 
 }
 
-int main() {
-    setlocale(LC_ALL, "spanish");
-
-    Pokedex pokedex;
-    pokedex.pokemons = nullptr;
-    pokedex.cantidad = 0;
-
-    if (!cargarPokedex(pokedex, NOMBRE_ARCHIVO)) {
-        cout << "No es posible leer: \"" << NOMBRE_ARCHIVO << "\"." << endl;
-        cout << "Verifica si el archivo esta en la misma carpeta desde donde ejecuta el programa." << endl;
-        return 1;
-    }
-
-    cout << "Pokedex cargada: " << pokedex.cantidad << " Pokemon." << endl;
-
-    liberarPokedex(pokedex);
-    return 0;
-}
-
 void mostrarPokemon(const Pokemon* p) {
     if (p == nullptr) {
         cout << "EEEEEEHHGG, ESTA MAL: No es valido ese pokemon" << endl;
@@ -442,4 +423,54 @@ void mostrarMenu() {
     cout << "5. Top 3 mas mamados y mas bobos" << endl;
     cout << "6. Salir de la pokedex" << endl;
     cout << "Selecciona una opcion papi: ";
+}
+
+int main() {
+    setlocale(LC_ALL, "spanish");
+
+    Pokedex pokedex;
+    pokedex.pokemons = nullptr;
+    pokedex.cantidad = 0;
+
+    if (!cargarPokedex(pokedex, NOMBRE_ARCHIVO)) {
+        cout << "No se que pusiste la real \"" << NOMBRE_ARCHIVO << "\"." << endl;
+        cout << "Verifica que el archivo este en la misma carpeta desde donde ejecuta el programa. BOBO" << endl;
+        return 1;
+    }
+
+    cout << "Pokedex cargada: " << pokedex.cantidad << " Pokemon." << endl;
+
+    int opcion;
+    do {
+        mostrarMenu();
+        opcion = leerEntero();
+
+        switch (opcion) {
+            case 1:
+                opcionVerPorNumero(pokedex);
+                break;
+            case 2:
+                opcionBuscarPorNombre(pokedex);
+                break;
+            case 3:
+                opcionVerPorTipo(pokedex);
+                break;
+            case 4:
+                opcionVerPorNombre(pokedex);
+                break;
+            case 5:
+                opcionTopEstadisticas(pokedex);
+                break;
+            case 6:
+                cout << "Por que cerraste la mejor pokedex de todas T-T?" << endl;
+                break;
+            default:
+                cout << "Opcion invalida mi hermano. Intentalo otra vez" << endl;
+                break;
+        }
+    } while (opcion != 6);
+
+    liberarPokedex(pokedex);
+    cout << "Memoria liberada. PORFIN SOY LIBRE" << endl;
+    return 0;
 }
