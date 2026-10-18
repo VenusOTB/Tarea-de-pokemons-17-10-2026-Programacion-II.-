@@ -29,11 +29,7 @@ struct Pokemon {
 struct Pokedex {
     Pokemon* pokemons;
     int cantidad;
-}; 
-
-int main () {
-    return 0;
-}
+};
 
 int convertirEntero(const string& texto) {
     if (texto.length() == 0) {
@@ -172,12 +168,15 @@ bool cargarPokedex(Pokedex& pokedex, const string& nombreArchivo) {
             p->nombre     = campos[1];
             p->tipo1      = campos[2];
             p->tipo2      = campos[3];
-            p->hp         = convertirEntero(campos[4]);
-            p->ataque     = convertirEntero(campos[5]);
-            p->defensa    = convertirEntero(campos[6]);
-            p->velocidad  = convertirEntero(campos[7]);
-            p->altura     = convertirEntero(campos[8]);
-            p->peso       = convertirEntero(campos[9]);
+            p->total      = convertirEntero(campos[4]);
+            p->hp         = convertirEntero(campos[5]);
+            p->ataque     = convertirEntero(campos[6]);
+            p->defensa    = convertirEntero(campos[7]);
+            p->ataqueEsp  = convertirEntero(campos[8]);
+            p->defensaEsp = convertirEntero(campos[9]);
+            p->velocidad  = convertirEntero(campos[10]);
+            p->generacion = convertirEntero(campos[11]);
+            p->legendario = contieneTexto(campos[12], "True");
 
             pokedex.cantidad++;
         }
