@@ -318,3 +318,15 @@ void ordenarPorTotalDescendente(Pokemon** lista, int cantidad) {
         }
     }
 }
+
+void opcionVerPorNumero(const Pokedex& pokedex) {
+    cout << "Pon el numero de la Pokedex (1-" << pokedex.cantidad << "): ";
+    int numero = leerEntero();
+
+    Pokemon* encontrado = buscarPorNumero(pokedex, numero);
+    if (encontrado != nullptr) {
+        mostrarPokemon(encontrado);
+    } else {
+        cout << "Que ponei papi, no existe nadie con ese numero de pokedex." << endl;
+    }
+}
