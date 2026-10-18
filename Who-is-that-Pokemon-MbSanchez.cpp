@@ -206,3 +206,61 @@ int main() {
     liberarPokedex(pokedex);
     return 0;
 }
+
+void mostrarPokemon(const Pokemon* p) {
+    if (p == nullptr) {
+        cout << "EEEEEEHHGG, ESTA MAL: No es valido ese pokemon" << endl;
+        return;
+    }
+
+    cout << "\n==============================" << endl;
+    cout << " #" << p->numero << " - " << p->nombre << endl;
+    cout << "==============================" << endl;
+
+    cout << " Es tipo:        " << p->tipo1;
+    if (p->tipo2.length() > 0) {
+        cout << " / " << p->tipo2;
+    }
+    cout << endl;
+
+    cout << " Es de generacion:  " << p->generacion << endl;
+
+    cout << " Es un Pokemon legendario?:  ";
+    if (p->legendario) {
+        cout << "Siuuu" << endl;
+    } else {
+        cout << "Nada que ver papi" << endl;
+    }
+
+    cout << right; 
+    cout << " //Sus Estadisticas son// " << endl;
+    cout << " HP:          " << setw(4) << p->hp << endl;
+    cout << " Ataque:      " << setw(4) << p->ataque << endl;
+    cout << " Defensa:     " << setw(4) << p->defensa << endl;
+    cout << " Ataque Especial: " << setw(4) << p->ataqueEsp << endl;
+    cout << " Defensa Especial:" << setw(4) << p->defensaEsp << endl;
+    cout << " Velocidad:   " << setw(4) << p->velocidad << endl;
+    cout << " TOTAL:       " << setw(4) << p->total << endl;
+}
+
+void mostrarEncabezadoTabla() {
+    cout << left
+         << setw(6)  << "#"
+         << setw(14) << "Nombre"
+         << setw(10) << "Tipo 1"
+         << setw(10) << "Tipo 2"
+         << setw(6)  << "Total" << endl;
+    cout << "----------------------------------------------" << endl;
+}
+
+void mostrarFilaPokemon(const Pokemon* p) {
+    if (p == nullptr) {
+        return;
+    }
+    cout << left
+         << setw(6)  << p->numero
+         << setw(14) << p->nombre
+         << setw(10) << p->tipo1
+         << setw(10) << p->tipo2
+         << setw(6)  << p->total << endl;
+}
