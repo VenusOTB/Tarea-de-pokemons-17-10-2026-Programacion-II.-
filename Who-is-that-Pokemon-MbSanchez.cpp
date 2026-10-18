@@ -233,7 +233,7 @@ void mostrarPokemon(const Pokemon* p) {
     }
 
     cout << right; 
-    cout << " //Sus Estadisticas son// " << endl;
+    cout << " ////Sus Estadisticas son//// " << endl;
     cout << " HP:          " << setw(4) << p->hp << endl;
     cout << " Ataque:      " << setw(4) << p->ataque << endl;
     cout << " Defensa:     " << setw(4) << p->defensa << endl;
@@ -263,4 +263,23 @@ void mostrarFilaPokemon(const Pokemon* p) {
          << setw(10) << p->tipo1
          << setw(10) << p->tipo2
          << setw(6)  << p->total << endl;
+}
+
+Pokemon* buscarPorNumero(const Pokedex& pokedex, int numero) {
+    for (int i = 0; i < pokedex.cantidad; i++) {
+        if (pokedex.pokemons[i].numero == numero) {
+            return &pokedex.pokemons[i];
+        }
+    }
+    return nullptr;
+}
+
+Pokemon* buscarPorNombreExacto(const Pokedex& pokedex, const string& nombre) {
+    string buscado = aMinusculas(nombre);
+    for (int i = 0; i < pokedex.cantidad; i++) {
+        if (aMinusculas(pokedex.pokemons[i].nombre) == buscado) {
+            return &pokedex.pokemons[i];
+        }
+    }
+    return nullptr;
 }
