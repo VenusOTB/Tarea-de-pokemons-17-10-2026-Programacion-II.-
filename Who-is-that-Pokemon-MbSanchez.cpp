@@ -50,3 +50,13 @@ int convertirEntero(const string& texto) {
     }
     return resultado;
 }
+
+string aMinusculas(const string& texto) {
+    string resultado = texto;
+    for (int i = 0; i < (int)resultado.length(); i++) {
+        if (resultado[i] >= 'A' && resultado[i] <= 'Z') {
+            resultado[i] = resultado[i] + ('a' - 'A');
+        }
+    }
+    return resultado;
+}
